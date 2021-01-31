@@ -1,9 +1,10 @@
 <?php
-	//This File is Created By : Albert O
+	//This File is Created By : Albert O(Graduated) For educational purposes
 	//Re-using without permision is prohibited !
-	//This file was developed from lecture projects.(PemJar/TOS)
+	//This file was developed from lecture projects.(PemJar/TOS)(2017/2018)
 	
     $cari="";
+	include_once 'dummyFetch.php';
     if(isset($_GET['cari'])){
         $cari = $_GET['cari'];
     }else{
@@ -19,7 +20,7 @@
 ?>
 <html>
 <head>
-    <title>UKP User Directory</title>
+    <title>UKP User Directory V2 Final</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -61,7 +62,7 @@
             </div>
         </div>
         <label>Partial search supported!</label>
-        <label>Example : Type "m26416" to search informatics student year 2016 or type "c14" to search informatics student year >= 2017</label>
+        <label>Example : Type "m264" to search informatics student year <= 2016 or type "c14" to search informatics student year >= 2017</label>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
@@ -86,6 +87,7 @@
                 <thead>
                     <tr>
                       <th scope="col">#</th>
+					  <th scope="col">Photo</th>
                       <th scope="col">Name</th>
                       <th scope="col">NRP</th>
                       <th scope="col">Check SKKK</th>  
@@ -96,11 +98,19 @@
                     echo "<tr>";
                     $jumTal = $i+1;
                     echo "<td>".$jumTal."</td>";
+					$nrp = $isi[$i]->login;
+					if ($nrp[0]=='m'){
+						echo "<!-- DO NOT USE THIS LINK FOR ANOTHER PURPOSES -->";
+						echo "<td><img src='http://203.189.120.204/fotomhs/".ltrim($nrp,"m").".jpg' width='50' height='75'></td>";
+					}
+					else{
+						echo "<td>No Picture</td>";
+					}
                     echo "<td>".$isi[$i]->nama."</td>";
-                    echo "<td>".$isi[$i]->login."</td>";
+                    echo "<td>".$nrp."</td>";
                     $nrp = $isi[$i]->login;
                     if($nrp[0]=="m"||$nrp[0]=="M"){
-                        $nrp = substr($isi[$i]->login, 1);
+                        $nrp = substr($nrp, 1);
                     }
                     else{
 
@@ -170,7 +180,8 @@
 </div>
 <footer class="footer">
       <div class="container">
-        <span class="text-muted">By : Albert O 26416113</span>
+        <a href="https://github.com/m26416113/UKP-Searcher">Projects By Albert O</a>
       </div>
 </footer>
 </body>
+
