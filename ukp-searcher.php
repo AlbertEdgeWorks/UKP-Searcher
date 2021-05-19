@@ -43,6 +43,26 @@
             line-height: 60px;
             background-color: #f5f5f5;
         }
+img {
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+}
+.img-container {
+  position: relative;
+}
+
+.img-container:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 99;
+}
     </style>
 </head>
 <body>
@@ -63,6 +83,7 @@
         </div>
         <label>Partial search supported!</label>
         <label>Example : Type "m264" to search informatics student year <= 2016 or type "c14" to search informatics student year >= 2017</label>
+        <b>Disclaimer: Do Not Use Image Link For Another Purpose! For feature removal please send me an email.</b><br>
         <button type="submit" class="btn btn-primary">Search</button>
     </form>
 </div>
@@ -101,10 +122,12 @@
 					$nrp = $isi[$i]->login;
 					if ($nrp[0]=='m'){
 						echo "<!-- DO NOT USE THIS LINK FOR ANOTHER PURPOSES -->";
-						echo "<td><img src='http://203.189.120.204/fotomhs/".ltrim($nrp,"m").".jpg' width='50' height='75'></td>";
+						echo "<td><div class='img-container'><img src='http://203.189.120.204/fotomhs/".ltrim($nrp,"m").".jpg' width='50' height='75'></div></td>";
 					}
 					else{
-						echo "<td>No Picture</td>";
+						echo "<!-- DO NOT USE THIS LINK FOR ANOTHER PURPOSES -->";
+						echo "<td><div class='img-container'><img src='http://203.189.120.204/fotomhs/".ucwords($nrp).".jpg' width='50' height='75'></div></td>";
+					
 					}
                     echo "<td>".$isi[$i]->nama."</td>";
                     echo "<td>".$nrp."</td>";
@@ -183,5 +206,36 @@
         <a href="https://github.com/m26416113/UKP-Searcher">Projects By Albert O</a>
       </div>
 </footer>
+<script language=JavaScript>
+
+var message="For Privacy Issue Please Do Not Copy Any Content From This Page! Thank You";
+
+function clickIE4(){
+if (event.button==2){
+alert(message);
+return false;
+ }
+}
+
+function clickNS4(e){
+if (document.layers||document.getElementById&&!document.all){
+if (e.which==2||e.which==3){
+alert(message);
+return false;
+}
+}
+}
+
+if (document.layers){
+document.captureEvents(Event.MOUSEDOWN);
+document.onmousedown=clickNS4;
+}
+else if (document.all&&!document.getElementById){
+document.onmousedown=clickIE4;
+}
+
+document.oncontextmenu=new Function("alert(message);return false")
+
+</script>
 </body>
 
